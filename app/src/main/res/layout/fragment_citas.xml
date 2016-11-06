@@ -10,7 +10,8 @@
         android:inputType="date"
         android:ems="10"
         android:id="@+id/edtFecha"
-        android:hint="Fecha" />
+        android:hint="Fecha"
+        android:focusable="false" />
 
     <EditText
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
         android:inputType="time"
         android:ems="10"
         android:id="@+id/edtHora"
-        android:hint="Hora" />
+        android:hint="Hora"
+        android:focusable="false"/>
 
     <EditText
         android:layout_width="match_parent"

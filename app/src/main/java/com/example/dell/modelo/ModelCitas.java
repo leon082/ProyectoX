@@ -1,5 +1,6 @@
 package com.example.dell.modelo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -77,10 +78,11 @@ public class ModelCitas {
 
     @Override
     public String toString() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return "* id:" + id +
-                ", fecha:" + fecha +
-                ", hora:'" + hora + '\n' +
-                "* clinica: '" + clinica +
+                ", fecha:" +formatter.format(fecha) +
+                ", hora: " + hora + '\n' +
+                "* clinica: " + clinica +
                 ", cumplimiento: " + cumplimiento +
                 ", idUsuario: " + idUsuario +'\n' +
                 "* idMotivo: " + idMotivo ;

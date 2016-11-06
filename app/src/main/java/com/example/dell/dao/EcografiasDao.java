@@ -46,9 +46,10 @@ public class EcografiasDao extends ConexionBD {
 
         //String[] ecografias = new String[cursor.getCount()];
         int i = 0;
-        ModelEcografias ecografia = new ModelEcografias();
+
         ModelEcografias[] listadoEcografias = new ModelEcografias[cursor.getCount()];
         while(cursor.moveToNext()){
+            ModelEcografias ecografia = new ModelEcografias();
             ecografia.setId(cursor.getInt(0));
             ecografia.setImagen(cursor.getString(1));
             ecografia.setMes(cursor.getInt(2));

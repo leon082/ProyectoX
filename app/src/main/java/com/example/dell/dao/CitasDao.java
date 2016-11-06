@@ -51,7 +51,7 @@ public class CitasDao extends ConexionBD{
 
     public ModelCitas[] consultarCitas() throws ParseException {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"id", "fecha", "hora", "clinica", "cumplimiento", "id_usuario", "id_motivo"};
+        String[] projection = {"id", "fecha", "clinica", "cumplimiento", "hora", "id_motivo"};
 
         Cursor cursor = db.query("citas",
                 projection,
@@ -64,11 +64,12 @@ public class CitasDao extends ConexionBD{
 
         //String[] citas = new String[cursor.getCount()];
         int i = 0;
-        ModelCitas cita = new ModelCitas();
+
         ModelCitas[] listadoCitas = new ModelCitas[cursor.getCount()];
         while(cursor.moveToNext()){
+            ModelCitas cita = new ModelCitas();
             cita.setId(cursor.getInt(0));
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");;
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             cita.setFecha(format.parse(cursor.getString(1)));
             cita.setClinica(cursor.getString(2));
             cita.setCumplimiento(Boolean.valueOf(cursor.getString(3)));
@@ -109,7 +110,7 @@ public class CitasDao extends ConexionBD{
 
     public ModelCitas  consultarPorId(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"fecha", "hora", "clinica", "cumplimiento", "id_usuario", "id_motivo"};
+        String[] projection = {"id", "fecha", "clinica", "cumplimiento", "hora", "id_motivo"};
 
         Cursor cursor = db.query("citas",
                 projection,
@@ -134,22 +135,25 @@ public class CitasDao extends ConexionBD{
         return cita;
     }
 
-    public ModelCitas consultarFechaCita(String fecha, String hora){
+    public ModelCitas consultarFechaCita(String fecha, String hora) throws ParseException {
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"fecha", "hora", "clinica", "cumplimiento", "id_usuario", "id_motivo"};
 
-        Cursor cursor = db.rawQuery("SELECT fecha, hora, clinica, cumplimiento, id_usuario, id_motivo FROM table WHERE fecha ='"+fecha+"' and hora ='"+hora+"'", null);
+        Cursor cursor = db.rawQuery("SELECT id, fecha, clinica, cumplimiento, hora, id_motivo FROM citas WHERE fecha = ? and hora = ?", new String[]{fecha,hora});
 
         String registro = "Registro no encontrado";
         ModelCitas cita = new ModelCitas();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            cita.setId(cursor.getInt(0));
-            cita.setFecha(new Date(cursor.getString(1)));
-            cita.setClinica(cursor.getString(2));
-            cita.setCumplimiento(Boolean.valueOf(cursor.getString(3)));
-            cita.setHora(cursor.getString(4));
-            cita.setIdMotivo(cursor.getInt(5));
+            cita.setId(cursor.getInt(cursor.getColumnIndex("id")));
+            String fechaCita = cursor.getString(cursor.getColumnIndex("fecha"));
+            fechaDate = formato.parse(fechaCita);
+            cita.setFecha(fechaDate);
+            cita.setClinica(cursor.getString(cursor.getColumnIndex("clinica")));
+            cita.setCumplimiento(Boolean.valueOf(cursor.getString(cursor.getColumnIndex("cumplimiento"))));
+            cita.setHora(cursor.getString(cursor.getColumnIndex("hora")));
+            cita.setIdMotivo(cursor.getInt(cursor.getColumnIndex("id_motivo")));
         }
         db.close();
         return cita;

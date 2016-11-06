@@ -19,6 +19,7 @@ import com.example.dell.proyecto.Citas;
 import com.example.dell.proyecto.Principal;
 import com.example.dell.proyecto.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -61,6 +62,7 @@ public class MiServicio extends Service {
     private class EjecutarNotificacion extends AsyncTask<String, String, String> {
         Context context;
         SimpleDateFormat dateFormat, horaFormat;
+        boolean stop;
 
         public EjecutarNotificacion(Context context) {
             this.context = context;
@@ -68,17 +70,31 @@ public class MiServicio extends Service {
 
         @Override
         protected String doInBackground(String... params) {
-            CitasDao citasDao = new CitasDao(context);
-            Calendar calendar = Calendar.getInstance();
-            Date date = new Date();
-            calendar.setTime(date);
-            calendar.add(Calendar.HOUR, 1);
-            Date hora = calendar.getTime();
 
-            ModelCitas cita = citasDao.consultarFechaCita(dateFormat.format(new Date()), horaFormat.format(hora));
+            while(stop){
+                try {
+                    CitasDao citasDao = new CitasDao(context);
+                    Calendar calendar = Calendar.getInstance();
+                    Date date = new Date();
+                    calendar.setTime(date);
+                    calendar.add(Calendar.HOUR, 1);
+                    Date hora = calendar.getTime();
 
-            if(cita != null){
-                publishProgress(cita.getClinica(), "Cita de control");
+                    ModelCitas cita = citasDao.consultarFechaCita(dateFormat.format(new Date()), horaFormat.format(hora));
+
+                    if(cita.getId() != 0){
+                        publishProgress(cita.getClinica(), "Cita de control");
+                    }
+
+
+                    //publishProgress(dateFormat.format(new Date()), horaFormat.format(hora), "test");
+
+                    Thread.sleep(60000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
             return null;
@@ -89,6 +105,7 @@ public class MiServicio extends Service {
             super.onPreExecute();
             dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             horaFormat = new SimpleDateFormat("HH:mm");
+            stop = true;
 
         }
 
@@ -100,35 +117,43 @@ public class MiServicio extends Service {
         @Override
         protected void onProgressUpdate(String... values) {
             super.onProgressUpdate(values);
-            
-            Intent intent = new Intent(context, Principal.class);
-
-            //Se crea el PendingIntent
-            PendingIntent pendingIntent = PendingIntent.getActivity(MiServicio.this, 0, intent, 0);
-
-            //Se crea el objeto NotificationCompact.
-            NotificationCompat.Builder builder = new NotificationCompat.Builder(MiServicio.this);
-
-            //se Define el icono pequeño que se mostrara en la barra
-            builder.setSmallIcon(android.R.drawable.sym_def_app_icon);
-            //Se define que intent se lanzara desde la notificación
-
-            builder.setContentIntent(pendingIntent);
-            builder.setAutoCancel(true);
-            builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), android.R.drawable.sym_def_app_icon));
-
-            builder.setContentTitle("Alerta cita");
-
-            builder.setContentText("Lugar Cita: "+values[0]+" Motivo: "+values[1]);
-
-            builder.setSubText("Presiona para ver el contenido");
 
 
-            NotificationManager notificationManager = (NotificationManager) getSystemService(
+                Intent intent = new Intent(context, Principal.class);
 
-                    NOTIFICATION_SERVICE);
+                //Se crea el PendingIntent
+                PendingIntent pendingIntent = PendingIntent.getActivity(MiServicio.this, 0, intent, 0);
 
-            notificationManager.notify(1, builder.build());
+                //Se crea el objeto NotificationCompact.
+                NotificationCompat.Builder builder = new NotificationCompat.Builder(MiServicio.this);
+
+                //se Define el icono pequeño que se mostrara en la barra
+                builder.setSmallIcon(android.R.drawable.sym_def_app_icon);
+                //Se define que intent se lanzara desde la notificación
+
+                builder.setContentIntent(pendingIntent);
+                builder.setAutoCancel(true);
+                builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), android.R.drawable.sym_def_app_icon));
+
+                builder.setContentTitle("Alerta cita");
+
+                builder.setContentText("Lugar Cita: " + values[0] + " Motivo: " + values[1]);
+
+                builder.setSubText("Presiona para ver el contenido");
+
+
+                NotificationManager notificationManager = (NotificationManager) getSystemService(
+
+                        NOTIFICATION_SERVICE);
+
+                notificationManager.notify(1, builder.build());
+
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            stop = false;
         }
     }
 
