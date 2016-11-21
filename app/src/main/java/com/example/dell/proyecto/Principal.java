@@ -68,14 +68,14 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
             case R.id.ecografias:
                 callFragment(item, new Ecografias());
                 return true;
-            case R.id.registrar:
+           /* case R.id.registrar:
 
                 callFragment(item, new Registro_Mama());
                 return true;
             case R.id.login:
 
                 callFragment(item, new Login());
-                return true;
+                return true;*/
             case R.id.tips:
 
                 callFragment(item, new Tips_Mama());

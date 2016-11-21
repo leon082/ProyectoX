@@ -1,12 +1,11 @@
 package com.example.dell.proyecto;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -14,50 +13,46 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.dell.dao.UsuariosDao;
 import com.example.dell.modelo.Usuario;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.example.dell.dao.UsuariosDao;
 
 /**
- * Created by LuisLeon on 19/10/2016.
+ * Created by LuisLeon on 21/11/2016.
  */
-public class Registro_Mama extends android.app.Fragment implements  AdapterView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
-    View myview;
+public class Regis  extends AppCompatActivity implements  AdapterView.OnItemSelectedListener, NavigationView.OnNavigationItemSelectedListener {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.registro_mama);
 
-        myview = inflater.inflate(R.layout.fragment_motivos, container, false);
+       // myview = inflater.inflate(R.layout.registro_mama, container, false);
         String [] Meses = {"1","2","3","4", "5", "6", "7", "8", "9"};
-        final Spinner spinner = (Spinner) myview.findViewById(R.id.meses);
+        final Spinner spinner = (Spinner) findViewById(R.id.meses);
 
 
-        ArrayAdapter adapter= new ArrayAdapter(myview.getContext(),android.R.layout.simple_spinner_dropdown_item, Meses);
+        ArrayAdapter adapter= new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item, Meses);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
 
-
-
-
-
         //Boton Registrar
-        Button botonRegistrar = (Button) myview.findViewById(R.id.registrar);
+        Button botonRegistrar = (Button) findViewById(R.id.registrar);
         botonRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 try {
-                    UsuariosDao bd = new UsuariosDao(myview.getContext());
-                    EditText nombre = (EditText) myview.findViewById(R.id.nombre);
-                    EditText apellido = (EditText) myview.findViewById(R.id.apellido);
-                    EditText correo = (EditText) myview.findViewById(R.id.correo);
-                    EditText usuariov = (EditText) myview.findViewById(R.id.usuario);
-                    Spinner meses = (Spinner) myview.findViewById(R.id.meses);
-                    EditText contraseña = (EditText) myview.findViewById(R.id.contraseña);
+                    UsuariosDao bd = new UsuariosDao(getApplicationContext());
+                    EditText nombre = (EditText) findViewById(R.id.nombre);
+                    EditText apellido = (EditText) findViewById(R.id.apellido);
+                    EditText correo = (EditText) findViewById(R.id.correo);
+                    EditText usuariov = (EditText) findViewById(R.id.usuario);
+                    Spinner meses = (Spinner) findViewById(R.id.meses);
+                    EditText contraseña = (EditText) findViewById(R.id.contraseña);
 
 
                     Usuario usuario = new Usuario();
@@ -74,36 +69,49 @@ public class Registro_Mama extends android.app.Fragment implements  AdapterView.
                         if (mat.find()) {
                             int cod;
 
-                            cod = bd.agregarUsuario(usuario, myview.getContext());
+                            cod = bd.agregarUsuario(usuario, getApplicationContext());
 
-                            Toast toast = Toast.makeText(myview.getContext(), "Acaba de Registrar el Usuario con ID:   " + cod, Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Acaba de Registrar el Usuario con ID:   " + cod, Toast.LENGTH_SHORT);
                             toast.show();
                             nombre.setText("");
                             apellido.setText("");
                             correo.setText("");
                             usuariov.setText("");
                             contraseña.setText("");
+                            Intent login = new Intent(getApplicationContext(),Login.class);
+                            startActivity(login);
 
 
                         } else {
-                            Toast toast = Toast.makeText(myview.getContext(), "Correo Invalido", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Correo Invalido", Toast.LENGTH_SHORT);
                             toast.show();
                         }
 
                     } else {
                         if (!mat.find()) {
-                            Toast toast = Toast.makeText(myview.getContext(), "Datos Incorrectos (Correo, nombres y/o Apellido", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Datos Incorrectos (Correo, nombres y/o Apellido", Toast.LENGTH_SHORT);
                             toast.show();
                         } else {
-                            Toast toast = Toast.makeText(myview.getContext(), "Nombre y apellido solo deben contener LETRAS", Toast.LENGTH_SHORT);
+                            Toast toast = Toast.makeText(getApplicationContext(), "Nombre y apellido solo deben contener LETRAS", Toast.LENGTH_SHORT);
                             toast.show();
                         }
 
                     }
                 } catch (Exception e) {
-                    Toast toast = Toast.makeText(myview.getContext(), "Error" + e.getMessage(), Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(), "Error" + e.getMessage(), Toast.LENGTH_SHORT);
                     toast.show();
                 }
+
+            }
+        });
+
+        //Boton Volver
+        Button botonVolver = (Button) findViewById(R.id.vovler);
+        botonVolver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent login = new Intent(getApplicationContext(),Login.class);
+                startActivity(login);
 
             }
         });
@@ -126,8 +134,13 @@ public class Registro_Mama extends android.app.Fragment implements  AdapterView.
 
 
 
-        return myview;
+
+
     }
+
+
+
+
 
 
     @Override
@@ -145,8 +158,3 @@ public class Registro_Mama extends android.app.Fragment implements  AdapterView.
         return false;
     }
 }
-
-
-
-
-
