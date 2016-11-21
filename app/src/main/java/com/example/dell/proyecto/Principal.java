@@ -76,6 +76,10 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
 
                 callFragment(item, new Login());
                 return true;*/
+            case R.id.salir:
+                finish();
+                return true;
+
             case R.id.tips:
 
                 callFragment(item, new Tips_Mama());

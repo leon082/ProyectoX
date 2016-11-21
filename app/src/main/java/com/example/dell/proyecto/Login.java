@@ -44,6 +44,8 @@ public class Login  extends AppCompatActivity {
                 EditText contra = (EditText) findViewById(R.id.contra);
 
                 if(bd.consultarUsuarioLoguin(String.valueOf(user.getText()),String.valueOf(contra.getText()))){
+                    user.setText("");
+                    contra.setText("");
                     Intent registrar = new Intent(getApplicationContext(),Principal.class);
                     startActivity(registrar);
                     Toast toast = Toast.makeText(getApplicationContext(), "Bienvenido", Toast.LENGTH_SHORT);
