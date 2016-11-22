@@ -7,14 +7,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
+import android.support.v4.view.GravityCompat;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -42,6 +49,9 @@ public class Citas extends Fragment {
     EditText fechaCita, edtHora;
     Calendar calendar;
     private int year, month, day;
+    ModelCitas[] listadoCitas;
+
+
 
     @Nullable
     @Override
@@ -49,13 +59,15 @@ public class Citas extends Fragment {
         myView = inflater.inflate(R.layout.fragment_citas, container, false);
         citasDao = new CitasDao(myView.getContext());
 
+
+        listadoCitas = null;
         String motivos[] = {"motivo 1", "motivo 2", "motivo 3", "motivo 4"};
         ArrayAdapter adapter = new ArrayAdapter(myView.getContext(), android.R.layout.simple_spinner_dropdown_item, motivos);
         spinner = (Spinner) myView.findViewById(R.id.spinner_motivo);
         spinner.setAdapter(adapter);
 
         listViewCitas = (ListView) myView.findViewById(R.id.listViewCitas);
-
+        registerForContextMenu(listViewCitas);
         fechaCita = (EditText) myView.findViewById(R.id.edtFecha);
         edtHora = (EditText) myView.findViewById(R.id.edtHora);
         calendar = Calendar.getInstance();
@@ -119,6 +131,13 @@ public class Citas extends Fragment {
         return myView;
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+
+        MenuInflater inflater = getActivity().getMenuInflater();
+        inflater.inflate(R.menu.menu_contextual, menu);
+    }
+
     private TimePickerDialog.OnTimeSetListener mTimePicker = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -145,7 +164,7 @@ public class Citas extends Fragment {
     }
     public void consultarCitas(){
 
-        ModelCitas[] listadoCitas = null;
+
         try {
             listadoCitas = citasDao.consultarCitas();
         } catch (ParseException e) {
@@ -154,5 +173,38 @@ public class Citas extends Fragment {
         adapterCitas = new ArrayAdapter<ModelCitas>(myView.getContext(), android.R.layout.simple_list_item_1, listadoCitas);
 
         listViewCitas.setAdapter(adapterCitas);
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        switch (item.getItemId()) {
+            case R.id.resultado_cita:
+                // Resultado de la cita
+
+                callFragment(item, new Resultados(), listadoCitas[info.position].getId());
+                return true;
+            case R.id.ecografia_cita:
+                // ecografia de la cita
+                callFragment(item, new Ecografias(), listadoCitas[info.position].getId());
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    public void callFragment(MenuItem item, Fragment frag, int id_cita){
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("id_cita", id_cita);
+
+        frag.setArguments(bundle);
+
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        LinearLayout linearLayout = (LinearLayout) myView.findViewById(R.id.fragment_cita);
+        linearLayout.removeAllViews();
+        fragmentManager.beginTransaction().replace(R.id.contenido_fragment, frag).commit();
     }
 }

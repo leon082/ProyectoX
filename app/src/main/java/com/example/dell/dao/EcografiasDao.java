@@ -86,7 +86,7 @@ public class EcografiasDao extends ConexionBD {
 
     public ModelEcografias consultarPorId(int id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] projection = {"id", "imagen", "mes", "id_ecografia"};
+        String[] projection = {"id", "imagen", "mes", "id_cita"};
 
         Cursor cursor = db.query("ecografias",
                 projection,
@@ -107,5 +107,32 @@ public class EcografiasDao extends ConexionBD {
         }
         db.close();
         return ecografia;
+    }
+
+    public ModelEcografias[] consultarPorIdCitas(int id_cita){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {"id", "imagen", "mes", "id_cita"};
+
+        Cursor cursor = db.query("ecografias",
+                projection,
+                " id_cita = ?",
+                new String[] {String.valueOf(id_cita)},
+                null,
+                null,
+                null,
+                null);
+        ModelEcografias[] listadoEcografias = new ModelEcografias[cursor.getCount()];
+        int i =0;
+        while(cursor.moveToNext()){
+            ModelEcografias ecografia = new ModelEcografias();
+            ecografia.setId(cursor.getInt(0));
+            ecografia.setImagen(cursor.getString(1));
+            ecografia.setMes(cursor.getInt(2));
+            ecografia.setIdCita(cursor.getInt(3));
+            listadoEcografias[i] = ecografia;
+            i++;
+        }
+        db.close();
+        return listadoEcografias;
     }
 }

@@ -73,6 +73,11 @@ public class MiServicio extends Service {
 
             while(stop){
                 try {
+
+
+                    dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    horaFormat = new SimpleDateFormat("HH:mm");
+
                     CitasDao citasDao = new CitasDao(context);
                     Calendar calendar = Calendar.getInstance();
                     Date date = new Date();
@@ -103,8 +108,6 @@ public class MiServicio extends Service {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            horaFormat = new SimpleDateFormat("HH:mm");
             stop = true;
 
         }

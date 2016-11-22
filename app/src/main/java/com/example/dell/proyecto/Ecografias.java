@@ -40,15 +40,18 @@ public class Ecografias extends Fragment {
     View myView;
     EcografiasDao ecografiasDao;
     Spinner spinner;
-    TextView seleccionarFoto;
+    EditText seleccionarFoto;
     String pathImage;
     ArrayAdapter<ModelEcografias> adapterEcografias;
     ListView listViewEcografias;
+    int id_cita;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.fragment_ecografias, container, false);
+
+        id_cita =getArguments().getInt("id_cita");
         ecografiasDao = new EcografiasDao(myView.getContext());
 
         String mes[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -60,7 +63,7 @@ public class Ecografias extends Fragment {
 
         consultarEcografias();
 
-        seleccionarFoto = (TextView) myView.findViewById(R.id.textVSeleccionar);
+        seleccionarFoto = (EditText) myView.findViewById(R.id.edtSeleccionar);
 
         seleccionarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +83,7 @@ public class Ecografias extends Fragment {
                     String mes = spinner.getSelectedItem().toString();
                     modelEcografias.setImagen(pathImage);
                     modelEcografias.setMes(Integer.parseInt(mes));
-                    modelEcografias.setIdCita(1);
+                    modelEcografias.setIdCita(id_cita);
                    
                     int id = ecografiasDao.agregarEcografia(modelEcografias);
 
@@ -151,9 +154,9 @@ public class Ecografias extends Fragment {
     public void consultarEcografias(){
 
         ModelEcografias[] listadoEcografias = null;
-        listadoEcografias = ecografiasDao.consultarEcografias();
-        adapterEcografias = new ArrayAdapter<ModelEcografias>(myView.getContext(), android.R.layout.simple_list_item_1, listadoEcografias);
-
+        listadoEcografias = ecografiasDao.consultarPorIdCitas(id_cita);
+        //adapterEcografias = new ArrayAdapter<ModelEcografias>(myView.getContext(), android.R.layout.simple_list_item_1, listadoEcografias);
+        adapterEcografias = new EcografiasAdapter(getActivity(), listadoEcografias);
         listViewEcografias.setAdapter(adapterEcografias);
     }
 }
