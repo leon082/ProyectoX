@@ -16,20 +16,20 @@ import java.util.ArrayList;
 /**
  * Created by Dell on 22/11/2016.
  */
-public class EcografiasAdapter extends ArrayAdapter {
+public class EcografiasAdapter extends BaseAdapter  {
 
     private Context context;
     private ModelEcografias[] ecografias;
+    LayoutInflater inflater;
 
     public EcografiasAdapter(Context context, ModelEcografias[] ecografias) {
-        super(context, R.layout.custom_list_ecografias, ecografias);
         this.context = context;
         this.ecografias = ecografias;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return ecografias.length;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class EcografiasAdapter extends ArrayAdapter {
         View item = inflater.inflate(R.layout.custom_list_ecografias, null);
 
         ImageView imagen = (ImageView) item.findViewById(R.id.imageView1);
-        Bitmap bitmap = BitmapFactory.decodeFile("/sdcard/"+ecografias[position].getImagen());
+        Bitmap bitmap = BitmapFactory.decodeFile("/sdcard/DirName/"+ecografias[position].getImagen());
         imagen.setImageBitmap(bitmap);
 
         TextView nombre = (TextView) item.findViewById(R.id.textViewEcografia);
