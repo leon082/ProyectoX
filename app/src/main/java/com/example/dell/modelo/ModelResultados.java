@@ -10,6 +10,7 @@ public class ModelResultados {
     private int id;
     private String adjunto;
     private Date fecha;
+    private int id_cita;
 
     public int getId() {
         return id;
@@ -35,11 +36,20 @@ public class ModelResultados {
         this.fecha = fecha;
     }
 
+    public int getId_cita() {
+        return id_cita;
+    }
+
+    public void setId_cita(int id_cita) {
+        this.id_cita = id_cita;
+    }
+
     public String toString() {
         return "ModelResultados{" +
                 "id=" + id +
                 ", adjunto=" + adjunto+
                 ", fecha=" + fecha+
+                ", id_cita" +id_cita+
                 '}';
     }
 }

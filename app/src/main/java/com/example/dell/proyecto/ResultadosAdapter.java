@@ -1,35 +1,35 @@
 package com.example.dell.proyecto;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.dell.modelo.ModelEcografias;
+import com.example.dell.modelo.ModelResultados;
+
 import java.util.ArrayList;
 
 /**
  * Created by Dell on 22/11/2016.
  */
-public class EcografiasAdapter extends BaseAdapter  {
-
+public class ResultadosAdapter extends BaseAdapter {
     private Context context;
-    private ArrayList<ModelEcografias> ecografias;
+    private ArrayList<ModelResultados> resultados;
     LayoutInflater inflater;
 
-    public EcografiasAdapter(Context context, ArrayList<ModelEcografias> ecografias) {
+    public ResultadosAdapter(Context context, ArrayList<ModelResultados> resultados) {
         this.context = context;
-        this.ecografias = ecografias;
+        this.resultados = resultados;
     }
 
     @Override
     public int getCount() {
-        return ecografias.size();
+        return resultados.size();
     }
 
     @Override
@@ -44,17 +44,16 @@ public class EcografiasAdapter extends BaseAdapter  {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View item = inflater.inflate(R.layout.custom_list_ecografias, null);
 
         ImageView imagen = (ImageView) item.findViewById(R.id.imageView1);
-        Bitmap bitmap = BitmapFactory.decodeFile(ecografias.get(position).getImagen());
+        Bitmap bitmap = BitmapFactory.decodeFile(resultados.get(position).getAdjunto());
         imagen.setImageBitmap(bitmap);
 
         TextView nombre = (TextView) item.findViewById(R.id.textViewEcografia);
-        nombre.setText("Mes Ecografia: "+ecografias.get(position).getMes());
+        nombre.setText(String.valueOf(resultados.get(position).getFecha()));
 
         return item;
     }

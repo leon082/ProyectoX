@@ -109,7 +109,7 @@ public class EcografiasDao extends ConexionBD {
         return ecografia;
     }
 
-    public ModelEcografias[] consultarPorIdCitas(int id_cita){
+    public ArrayList<ModelEcografias> consultarPorIdCitas(int id_cita){
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {"id", "imagen", "mes", "id_cita"};
 
@@ -121,7 +121,7 @@ public class EcografiasDao extends ConexionBD {
                 null,
                 null,
                 null);
-        ModelEcografias[] listadoEcografias = new ModelEcografias[cursor.getCount()];
+        ArrayList<ModelEcografias> listadoEcografias = new ArrayList<>();
         int i =0;
         while(cursor.moveToNext()){
             ModelEcografias ecografia = new ModelEcografias();
@@ -129,7 +129,7 @@ public class EcografiasDao extends ConexionBD {
             ecografia.setImagen(cursor.getString(1));
             ecografia.setMes(cursor.getInt(2));
             ecografia.setIdCita(cursor.getInt(3));
-            listadoEcografias[i] = ecografia;
+            listadoEcografias.add(ecografia);
             i++;
         }
         db.close();

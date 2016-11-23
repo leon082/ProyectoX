@@ -58,13 +58,13 @@ public class Motivos extends Fragment {
     }
     public void consultarMotivos(){
 
-        ModelMotivos[] listadoMotivos = null;
+        String[] listadoMotivos = null;
         try {
             listadoMotivos = motivosDao.consultarMotivos();
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        adapterMotivos = new ArrayAdapter<ModelMotivos>(myView.getContext(), android.R.layout.simple_list_item_1, listadoMotivos);
+        adapterMotivos = new ArrayAdapter(myView.getContext(), android.R.layout.simple_list_item_1, listadoMotivos);
         listViewMotivos.setAdapter(adapterMotivos);
     }
 }

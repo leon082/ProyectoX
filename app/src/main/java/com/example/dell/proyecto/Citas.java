@@ -29,6 +29,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.dell.dao.CitasDao;
+import com.example.dell.dao.MotivosDao;
 import com.example.dell.modelo.ModelCitas;
 
 import java.text.ParseException;
@@ -43,6 +44,7 @@ public class Citas extends Fragment {
 
     View myView;
     CitasDao citasDao;
+    MotivosDao motivosDao;
     Spinner spinner;
     ListView listViewCitas;
     ArrayAdapter<ModelCitas> adapterCitas;
@@ -58,10 +60,15 @@ public class Citas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.fragment_citas, container, false);
         citasDao = new CitasDao(myView.getContext());
-
+        motivosDao = new MotivosDao(myView.getContext());
 
         listadoCitas = null;
-        String motivos[] = {"motivo 1", "motivo 2", "motivo 3", "motivo 4"};
+        String motivos[] = new String[0];
+        try {
+            motivos = motivosDao.consultarMotivos();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         ArrayAdapter adapter = new ArrayAdapter(myView.getContext(), android.R.layout.simple_spinner_dropdown_item, motivos);
         spinner = (Spinner) myView.findViewById(R.id.spinner_motivo);
         spinner.setAdapter(adapter);

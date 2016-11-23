@@ -27,7 +27,7 @@ public class MotivosDao extends ConexionBD{
         return fila;
     }
 
-    public ModelMotivos[] consultarMotivos() throws ParseException {
+    public String[] consultarMotivos() throws ParseException {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {"id", "descripcion"};
 
@@ -41,12 +41,10 @@ public class MotivosDao extends ConexionBD{
                 null);
 
         int i = 0;
-        ModelMotivos motivo = new ModelMotivos();
-        ModelMotivos[] listadoMotivos = new ModelMotivos[cursor.getCount()];
+        String motivo = "";
+        String[] listadoMotivos = new String[cursor.getCount()];
         while(cursor.moveToNext()){
-            motivo.setId(cursor.getInt(0));
-            motivo.setDescripcion(cursor.getString(1));
-            listadoMotivos[i] = motivo;
+            listadoMotivos[i] = cursor.getString(1);
             i++;
         }
         db.close();

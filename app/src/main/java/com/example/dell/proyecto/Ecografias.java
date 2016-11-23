@@ -30,6 +30,8 @@ import com.example.dell.modelo.ModelEcografias;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -42,7 +44,7 @@ public class Ecografias extends Fragment {
     Spinner spinner;
     EditText seleccionarFoto;
     String pathImage;
-    ArrayAdapter<ModelEcografias> adapterEcografias;
+    EcografiasAdapter adapterEcografias;
     ListView listViewEcografias;
     int id_cita;
 
@@ -104,8 +106,9 @@ public class Ecografias extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode){
+        SubirFoto subirFoto = new SubirFoto();
+        pathImage = subirFoto.guardarFoto(requestCode, resultCode, data, myView);
+        /*switch (requestCode){
             case 100:
                 if(resultCode == Activity.RESULT_OK){
                     Uri selectedImage = data.getData();
@@ -118,22 +121,23 @@ public class Ecografias extends Fragment {
                     String filePath = cursor.getString(columnIndex);
                     cursor.close();
                     Bitmap yourSelectImage = BitmapFactory.decodeFile(filePath);
-                    createDirectoryAndSaveFile(yourSelectImage, "imagen.jpg");
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_m_s");
+                    createDirectoryAndSaveFile(yourSelectImage, "imagen"+dateFormat.format(new Date())+".jpg");
 
                 }
-        }
+        }*/
     }
 
     public void createDirectoryAndSaveFile(Bitmap imageToSave, String fileName) {
 
-        File direct = new File(Environment.getExternalStorageDirectory() + "/DirName");
+        File direct = new File(Environment.getExternalStorageDirectory() + "/Ecografias");
 
         if (!direct.exists()) {
-            File wallpaperDirectory = new File("/sdcard/DirName/");
+            File wallpaperDirectory = new File("/sdcard/Ecografias/");
             wallpaperDirectory.mkdirs();
         }
 
-        File file = new File(new File("/sdcard/DirName/"), fileName);
+        File file = new File(new File("/sdcard/Ecografias/"), fileName);
         pathImage = file.getAbsolutePath();
         if (file.exists()) {
             file.delete();
@@ -153,10 +157,10 @@ public class Ecografias extends Fragment {
 
     public void consultarEcografias(){
 
-        ModelEcografias[] listadoEcografias = null;
+        ArrayList<ModelEcografias> listadoEcografias = new ArrayList<ModelEcografias>();;
         listadoEcografias = ecografiasDao.consultarPorIdCitas(id_cita);
         //adapterEcografias = new ArrayAdapter<ModelEcografias>(myView.getContext(), android.R.layout.simple_list_item_1, listadoEcografias);
-        adapterEcografias = new EcografiasAdapter(getActivity(), listadoEcografias);
+        adapterEcografias = new EcografiasAdapter(myView.getContext(), listadoEcografias);
         listViewEcografias.setAdapter(adapterEcografias);
     }
 }
