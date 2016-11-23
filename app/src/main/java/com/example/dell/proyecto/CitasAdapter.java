@@ -54,6 +54,7 @@ public class CitasAdapter extends BaseAdapter {
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
+
         if(position%2==0){
             item.setBackgroundColor(Color.parseColor("#9AB2F5"));
         }else{
