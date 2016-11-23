@@ -45,9 +45,9 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         mDrawerToggle.syncState();
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Button botonIniciar = (Button) findViewById(R.id.btnIniciar);
+        ///final Button botonIniciar = (Button) findViewById(R.id.btnIniciar);
 
-        botonIniciar.setOnClickListener(this);
+        //botonIniciar.setOnClickListener(this);
         TipsDao bd = new TipsDao(this);
         if(!bd.consultarTips()){
             bd.agregarTips(llenarTips());
