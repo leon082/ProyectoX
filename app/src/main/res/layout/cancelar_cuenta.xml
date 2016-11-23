@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Usuario"
-        android:textSize="50px"
         android:id="@+id/text"
         android:textColor="#FFFFFFFF"
          />
@@ -33,7 +32,7 @@
         android:text="Contraseña"
         android:id="@+id/textView8"
         android:textColor="#FFFFFFFF"
-        android:textSize="50px" />
+         />
 
     <EditText
         android:layout_width="500px"

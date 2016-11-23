@@ -9,7 +9,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Resultado"
         android:textColor="#FFFFFFFF"
-        android:textSize="50px"
         android:id="@+id/textView5" />
     <EditText
         android:layout_width="match_parent"
@@ -25,7 +24,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Fecha"
         android:textColor="#FFFFFFFF"
-        android:textSize="50px"
         android:id="@+id/textView7" />
 
     <EditText

@@ -4,18 +4,30 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Descripcion"
+        android:id="@+id/textView9"
+        android:textColor="#FFFFFFFF"
+         />
+
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edtDescripcion"
-        android:hint="Descripcion" />
+        android:hint="Descripcion"
+        android:background="#FFFFFFFF"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/btnGuardarMotivos"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:drawableTop="@drawable/ic_save_black_24dp"/>
 
     <ListView
         android:layout_width="match_parent"

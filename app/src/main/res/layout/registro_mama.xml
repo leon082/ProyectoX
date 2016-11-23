@@ -20,7 +20,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Nombre"
             android:textColor="#FFFFFFFF"
-               android:textSize="50px"
             android:id="@+id/textView3" />
 
         <EditText
@@ -37,7 +36,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Apellido"
             android:textColor="#FFFFFFFF"
-            android:textSize="50px"
             android:id="@+id/textView4" />
 
         <EditText
@@ -55,7 +53,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Meses"
             android:textColor="#FFFFFFFF"
-            android:textSize="50px"
             android:id="@+id/textView7" />
 
         <Spinner
@@ -71,7 +68,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Correo"
             android:textColor="#FFFFFFFF"
-            android:textSize="50px"
             android:id="@+id/textView5" />
 
         <EditText
@@ -90,7 +86,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Usuario"
             android:textColor="#FFFFFFFF"
-            android:textSize="50px"
             android:id="@+id/text" />
 
         <EditText
@@ -107,7 +102,6 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Contraseña"
             android:textColor="#FFFFFFFF"
-            android:textSize="50px"
             android:id="@+id/textView8" />
 
         <EditText

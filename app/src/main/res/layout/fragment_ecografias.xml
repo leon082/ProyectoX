@@ -12,7 +12,7 @@
         android:text="Ecografia"
         android:id="@+id/textView9"
         android:textColor="#FFFFFFFF"
-        android:textSize="50px" />
+         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
         android:text="Mes"
         android:id="@+id/textView8"
         android:textColor="#FFFFFFFF"
-        android:textSize="50px" />
+         />
 
     <Spinner
         android:layout_width="match_parent"
