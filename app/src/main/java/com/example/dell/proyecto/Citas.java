@@ -33,6 +33,7 @@ import com.example.dell.dao.MotivosDao;
 import com.example.dell.modelo.ModelCitas;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -47,11 +48,11 @@ public class Citas extends Fragment {
     MotivosDao motivosDao;
     Spinner spinner;
     ListView listViewCitas;
-    ArrayAdapter<ModelCitas> adapterCitas;
+    CitasAdapter adapterCitas;
     EditText fechaCita, edtHora;
     Calendar calendar;
     private int year, month, day;
-    ModelCitas[] listadoCitas;
+    ArrayList<ModelCitas> listadoCitas;
 
 
 
@@ -148,7 +149,13 @@ public class Citas extends Fragment {
     private TimePickerDialog.OnTimeSetListener mTimePicker = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            edtHora.setText( hourOfDay + ":" + minute);
+            String day= ""+hourOfDay;
+            if((""+hourOfDay).length() == 1)
+                day = "0"+hourOfDay;
+            String minuto = ""+minute;
+            if((""+minute).length() == 1)
+                minuto = "0"+minute;
+            edtHora.setText( day + ":" + minuto);
         }
     };
 
@@ -177,7 +184,7 @@ public class Citas extends Fragment {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        adapterCitas = new ArrayAdapter<ModelCitas>(myView.getContext(), android.R.layout.simple_list_item_1, listadoCitas);
+        adapterCitas = new CitasAdapter(myView.getContext(), listadoCitas);
 
         listViewCitas.setAdapter(adapterCitas);
 
@@ -191,11 +198,11 @@ public class Citas extends Fragment {
             case R.id.resultado_cita:
                 // Resultado de la cita
 
-                callFragment(item, new Resultados(), listadoCitas[info.position].getId());
+                callFragment(item, new Resultados(), listadoCitas.get(info.position).getId());
                 return true;
             case R.id.ecografia_cita:
                 // ecografia de la cita
-                callFragment(item, new Ecografias(), listadoCitas[info.position].getId());
+                callFragment(item, new Ecografias(), listadoCitas.get(info.position).getId());
                 return true;
             default:
                 return super.onContextItemSelected(item);

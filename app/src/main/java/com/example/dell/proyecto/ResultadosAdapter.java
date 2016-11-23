@@ -3,6 +3,7 @@ package com.example.dell.proyecto;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.dell.modelo.ModelResultados;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -48,12 +50,19 @@ public class ResultadosAdapter extends BaseAdapter {
 
         View item = inflater.inflate(R.layout.custom_list_ecografias, null);
 
+        if(position%2==0){
+            item.setBackgroundColor(Color.parseColor("#9AB2F5"));
+        }else{
+            item.setBackgroundColor(Color.parseColor("#E7EBF6"));
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
         ImageView imagen = (ImageView) item.findViewById(R.id.imageView1);
         Bitmap bitmap = BitmapFactory.decodeFile(resultados.get(position).getAdjunto());
         imagen.setImageBitmap(bitmap);
 
         TextView nombre = (TextView) item.findViewById(R.id.textViewEcografia);
-        nombre.setText(String.valueOf(resultados.get(position).getFecha()));
+        nombre.setText(formatter.format(resultados.get(position).getFecha()));
 
         return item;
     }

@@ -43,7 +43,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.abrir, R.string.cerrar);
         drawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Button botonIniciar = (Button) findViewById(R.id.btnIniciar);
 

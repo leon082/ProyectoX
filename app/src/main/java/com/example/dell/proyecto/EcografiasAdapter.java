@@ -2,6 +2,7 @@ package com.example.dell.proyecto;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,12 @@ public class EcografiasAdapter extends BaseAdapter  {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View item = inflater.inflate(R.layout.custom_list_ecografias, null);
+
+        if(position%2==0){
+            item.setBackgroundColor(Color.parseColor("#9AB2F5"));
+        }else{
+            item.setBackgroundColor(Color.parseColor("#E7EBF6"));
+        }
 
         ImageView imagen = (ImageView) item.findViewById(R.id.imageView1);
         Bitmap bitmap = BitmapFactory.decodeFile(ecografias.get(position).getImagen());

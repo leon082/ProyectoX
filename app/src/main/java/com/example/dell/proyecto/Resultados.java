@@ -135,5 +135,6 @@ public class Resultados extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         SubirFoto subirFoto = new SubirFoto();
         pathImage = subirFoto.guardarFoto(requestCode, resultCode, data, myView);
+        seleccionarFoto.setText(pathImage);
     }
 }

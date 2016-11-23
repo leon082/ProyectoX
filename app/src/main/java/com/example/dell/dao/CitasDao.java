@@ -49,7 +49,7 @@ public class CitasDao extends ConexionBD{
         return fila;
     }
 
-    public ModelCitas[] consultarCitas() throws ParseException {
+    public ArrayList<ModelCitas> consultarCitas() throws ParseException {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] projection = {"id", "fecha", "clinica", "cumplimiento", "hora", "id_motivo"};
 
@@ -65,7 +65,7 @@ public class CitasDao extends ConexionBD{
         //String[] citas = new String[cursor.getCount()];
         int i = 0;
 
-        ModelCitas[] listadoCitas = new ModelCitas[cursor.getCount()];
+        ArrayList<ModelCitas> listadoCitas = new ArrayList<>();
         while(cursor.moveToNext()){
             ModelCitas cita = new ModelCitas();
             cita.setId(cursor.getInt(0));
@@ -75,7 +75,7 @@ public class CitasDao extends ConexionBD{
             cita.setCumplimiento(Boolean.valueOf(cursor.getString(3)));
             cita.setHora(cursor.getString(4));
             cita.setIdMotivo(cursor.getInt(5));
-            listadoCitas[i] = cita;
+            listadoCitas.add(cita);
             i++;
         }
         db.close();
