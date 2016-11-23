@@ -29,7 +29,6 @@
             android:layout_centerHorizontal="true"
             android:background="#FFFFFFFF"
             android:singleLine="true"
-            android:gravity="center_horizontal"
             android:id="@+id/nombre" />
 
         <TextView
