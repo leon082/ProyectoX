@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.IBinder;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
@@ -94,7 +95,7 @@ public class MiServicio extends Service {
 
                     //publishProgress(dateFormat.format(new Date()), horaFormat.format(hora), "test");
 
-                    Thread.sleep(60000);
+                    Thread.sleep(30000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ParseException e) {
@@ -150,6 +151,8 @@ public class MiServicio extends Service {
                         NOTIFICATION_SERVICE);
 
                 notificationManager.notify(1, builder.build());
+            Vibrator v = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+            v.vibrate(10000);
 
         }
 
