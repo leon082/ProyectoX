@@ -5,6 +5,13 @@
     android:weightSum="1"
     android:id="@+id/fragment_cita">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:id="@+id/textView4"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +19,16 @@
         android:ems="10"
         android:id="@+id/edtFecha"
         android:hint="Fecha"
+        android:background="#FFFFFFFF"
         android:focusable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:id="@+id/textView6"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px" />
 
     <EditText
         android:layout_width="match_parent"
@@ -21,31 +37,45 @@
         android:ems="10"
         android:id="@+id/edtHora"
         android:hint="Hora"
+        android:background="#FFFFFFFF"
         android:focusable="false"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clinica"
+        android:id="@+id/textView40"
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edtClinica"
-        android:hint="Clinica" />
+        android:hint="Clinica"
+        android:background="#FFFFFFFF"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Motivo"
         android:id="@+id/textView2"
-        android:textSize="25dp" />
+        android:textColor="#FFFFFFFF"
+        android:textSize="50px" />
+
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner_motivo" />
+        android:id="@+id/spinner_motivo"
+        android:background="@android:color/white"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Guardar"
         android:id="@+id/btnGuardarCita"
+        android:drawableTop="@drawable/ic_save_black_24dp"
         android:layout_gravity="center_horizontal" />
 
     <ListView

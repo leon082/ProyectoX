@@ -9,7 +9,9 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/content_layout">
+        android:background="@mipmap/registrar"
+        android:id="@+id/content_layout"
+        >
 
 
            <TextView
@@ -17,11 +19,17 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Nombre"
+            android:textColor="#FFFFFFFF"
+               android:textSize="50px"
             android:id="@+id/textView3" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFFFF"
+            android:singleLine="true"
+            android:gravity="center_horizontal"
             android:id="@+id/nombre" />
 
         <TextView
@@ -29,11 +37,16 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Apellido"
+            android:textColor="#FFFFFFFF"
+            android:textSize="50px"
             android:id="@+id/textView4" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFFFF"
+            android:singleLine="true"
             android:id="@+id/apellido" />
 
 
@@ -42,12 +55,15 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Meses"
+            android:textColor="#FFFFFFFF"
+            android:textSize="50px"
             android:id="@+id/textView7" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Uso de Spinner"
+            android:background="@android:color/white"
             android:id="@+id/meses" />
 
         <TextView
@@ -55,11 +71,16 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Correo"
+            android:textColor="#FFFFFFFF"
+            android:textSize="50px"
             android:id="@+id/textView5" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFFFF"
+            android:singleLine="true"
             android:inputType="textEmailAddress"
             android:ems="10"
             android:id="@+id/correo" />
@@ -69,11 +90,16 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Usuario"
+            android:textColor="#FFFFFFFF"
+            android:textSize="50px"
             android:id="@+id/text" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFFFF"
+            android:singleLine="true"
             android:id="@+id/usuario" />
 
         <TextView
@@ -81,11 +107,16 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Contraseña"
+            android:textColor="#FFFFFFFF"
+            android:textSize="50px"
             android:id="@+id/textView8" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="#FFFFFFFF"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/contraseña" />
@@ -100,12 +131,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Registrar"
+                 android:drawableTop="@drawable/ic_account_circle_black_24dp"
+                 android:layout_weight="0.50"
                 android:id="@+id/registrar" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Volver"
-                android:id="@+id/vovler" />
+                android:id="@+id/vovler"
+                android:layout_weight="0.50"
+                android:drawableTop="@drawable/ic_keyboard_return_black_24dp"
+                />
 
         </LinearLayout>
 

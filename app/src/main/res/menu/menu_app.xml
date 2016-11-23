@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/tips" android:title="Tips Mamá"> Tips</item>
-    <item android:id="@+id/citas" android:title="cita">citas</item>
-    <item android:id="@+id/ecografias" android:title="Ecografias">Ecografias</item>
+    <item android:id="@+id/tips" android:title="Tips Mamá" android:icon="@mipmap/ic_pregnant_woman_black_24dp"> Tips</item>
+    <item android:id="@+id/citas" android:title="cita" android:icon="@mipmap/ic_alarm_add_black_24dp">citas</item>
+    <item android:id="@+id/ecografias" android:title="Ecografias" android:icon="@mipmap/ic_add_a_photo_black_24dp">Ecografias</item>
     <item android:id="@+id/motivos" android:title="Motivos">Motivos</item>
     <item android:id="@+id/resultados" android:title="Resultados">Resultados</item>
-    <item android:id="@+id/cancelar" android:title="Cerrar Cuenta" > Cancelar</item>
-    <item android:id="@+id/salir" android:title="Salir"> Salir</item>
+    <item android:id="@+id/cancelar" android:title="Cerrar Cuenta" android:icon="@mipmap/ic_block_black_24dp"> Cancelar</item>
+    <item android:id="@+id/salir" android:title="Salir" android:icon="@mipmap/ic_directions_run_black_24dp"> Salir</item>
 </menu>
