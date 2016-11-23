@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.example.dell.dao.UsuariosDao;
+import com.example.dell.ext.MiServicio;
 
 
 import java.util.regex.Matcher;
@@ -33,6 +34,10 @@ public class Login  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        Intent i = new Intent(this, MiServicio.class);
+        stopService(i);
+        startService(i);
 
         //Boton Ingresar
         Button botonLogin = (Button) findViewById(R.id.ingre);
