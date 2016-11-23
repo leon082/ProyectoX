@@ -65,9 +65,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
             case R.id.citas:
                 callFragment(item, new Citas());
                 return true;
-            case R.id.ecografias:
-                callFragment(item, new Ecografias());
-                return true;
+
            /* case R.id.registrar:
 
                 callFragment(item, new Registro_Mama());
@@ -92,10 +90,7 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
 
                 callFragment(item, new Motivos());
                 return true;
-            case R.id.resultados:
 
-                callFragment(item, new Resultados());
-                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

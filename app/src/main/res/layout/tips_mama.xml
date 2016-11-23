@@ -30,7 +30,7 @@
         android:ems="10"
         android:id="@+id/tipMama"
         android:textColor="@android:color/white"
-        android:textSize="30dp" />
+        android:textSize="20dp" />
 
     <Button
         android:layout_width="wrap_content"
