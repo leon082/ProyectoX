@@ -51,11 +51,9 @@ public class Principal extends AppCompatActivity implements NavigationView.OnNav
         TipsDao bd = new TipsDao(this);
         if(!bd.consultarTips()){
             bd.agregarTips(llenarTips());
-            Toast toast = Toast.makeText(this, "Registro tips", Toast.LENGTH_SHORT);
-            toast.show();
+
         }else{
-            Toast toast = Toast.makeText(this, "NO Registro tips", Toast.LENGTH_SHORT);
-            toast.show();
+
         }
     }
 

@@ -10,15 +10,13 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Seleccione su Mes"
-        android:id="@+id/textView8"
-        android:textColor="#FFFFFFFF" />
+        android:id="@+id/textView8" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
         android:text="Uso de Spinner"
-        android:textColor="#FFFFFFFF"
         android:id="@+id/mesSpinner"
          />
 
@@ -29,7 +27,6 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/tipMama"
-        android:textColor="@android:color/white"
         android:textSize="20dp" />
 
     <Button

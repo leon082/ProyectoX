@@ -19,14 +19,12 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Nombre"
-            android:textColor="#FFFFFFFF"
             android:id="@+id/textView3" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="#FFFFFFFF"
             android:singleLine="true"
             android:id="@+id/nombre" />
 
@@ -35,14 +33,12 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Apellido"
-            android:textColor="#FFFFFFFF"
             android:id="@+id/textView4" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="#FFFFFFFF"
             android:singleLine="true"
             android:id="@+id/apellido" />
 
@@ -52,7 +48,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Meses"
-            android:textColor="#FFFFFFFF"
             android:id="@+id/textView7" />
 
         <Spinner
@@ -67,14 +62,12 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Correo"
-            android:textColor="#FFFFFFFF"
             android:id="@+id/textView5" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="#FFFFFFFF"
             android:singleLine="true"
             android:inputType="textEmailAddress"
             android:ems="10"
@@ -85,14 +78,12 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Usuario"
-            android:textColor="#FFFFFFFF"
             android:id="@+id/text" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="#FFFFFFFF"
             android:singleLine="true"
             android:id="@+id/usuario" />
 
@@ -101,14 +92,12 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Contraseña"
-            android:textColor="#FFFFFFFF"
             android:id="@+id/textView8" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:background="#FFFFFFFF"
             android:singleLine="true"
             android:inputType="textPassword"
             android:ems="10"

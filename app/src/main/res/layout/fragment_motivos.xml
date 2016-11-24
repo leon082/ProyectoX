@@ -10,7 +10,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Descripcion"
         android:id="@+id/textView9"
-        android:textColor="#FFFFFFFF"
          />
 
 
@@ -18,8 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/edtDescripcion"
-        android:hint="Descripcion"
-        android:background="#FFFFFFFF"/>
+        android:hint="Descripcion"/>
 
     <Button
         android:layout_width="wrap_content"
